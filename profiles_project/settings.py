@@ -23,9 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '04*!9eo$qb+%j(t)m)t!du2l_+y9+sslz4)zg0bq9$*_%eqza_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', 1))) #1==True, 0==False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*.compute.amazonaws.com",
+    "127.0.0.1"
+]
 
 
 # Application definition
@@ -128,3 +131,6 @@ STATIC_URL = '/static/'
 
 # Where is the custom  user model located
 AUTH_USER_MODEL = 'profiles_api.UserProfile'
+
+# tell django where to store static files
+STATIC_ROOT = 'static/'
